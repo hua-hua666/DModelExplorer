@@ -4,6 +4,7 @@
 #include <QFileInfo>
 #include <QCryptographicHash>
 
+
 MyDirContentsModel::MyDirContentsModel(QWidget *parent) : QSortFilterProxyModel(parent){
     // 存放
     tmpDir = QDir::tempPath() + "/3DModelExlorerTmp/";
@@ -28,11 +29,35 @@ QVariant MyDirContentsModel::data(const QModelIndex &index, int role = Qt::Displ
             QFile theFile(qfi_selectedFile.absoluteFilePath());
             theFile.open(QIODevice::ReadOnly);
             QByteArray ba = QCryptographicHash::hash(theFile.readAll(), QCryptographicHash::Md5);
+//            QByteArray ba = qfi_selectedFile.absoluteFilePath().toUtf8();
             theFile.close();
             QString fullMD5Name = tmpDir + ba.toHex().constData() + ".bmp";
             QFileInfo fi(fullMD5Name);
             if (! fi.isFile()){
+//                if(tmp_count==0){
+//                    start = clock();
+//                }
+//                tmp_count++;
+//                if(tmp_count==10){
+//                    end = clock();
+//                    qDebug() << "10:\t" << double(end-start)/CLOCKS_PER_SEC;
+//                }
+//                if(tmp_count==100){
+//                    end = clock();
+//                    qDebug() << "100:\t" << double(end-start)/CLOCKS_PER_SEC;
+//                }
+//                if(tmp_count==500){
+//                    end = clock();
+//                    qDebug() << "500:\t" << double(end-start)/CLOCKS_PER_SEC;
+//                }
+//                if(tmp_count==1000){
+//                    end = clock();
+//                    qDebug() << "1000:\t" << double(end-start)/CLOCKS_PER_SEC;
+//                }
+//                start = clock();
                 ImageOpenGLWidget iow_image(nullptr, qfi_selectedFile.absoluteFilePath(), fullMD5Name);
+//                end = clock();
+//                qDebug() << qfi_selectedFile.absoluteFilePath() << ":\t" << double(end-start)/CLOCKS_PER_SEC;
             }
 //            return QIcon("../DModelExplorer/icon/icon1.ico");
             return QIcon(fullMD5Name);

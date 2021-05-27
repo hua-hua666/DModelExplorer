@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QSortFilterProxyModel>
 #include <QFileSystemModel>
+#include <ctime>
 
 class MyDirContentsModel : public QSortFilterProxyModel
 {
@@ -23,5 +24,8 @@ signals:
 public slots:
     void setBaseModel(QFileSystemModel *baseFileModel);
 };
+
+static int tmp_count = 0;
+static clock_t start, end;
 
 #endif // MYDIRCONTENTSMODEL_H
