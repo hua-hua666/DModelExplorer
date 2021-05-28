@@ -3,8 +3,8 @@
 
 SceneQt3DContainer::SceneQt3DContainer(QObject *parent) : SceneAbstractContainer(parent){
     Qt3DExtras::Qt3DWindow *view = new Qt3DExtras::Qt3DWindow();
-//    view->defaultFrameGraph()->setClearColor(QColor(QRgb(0xf0f0f0)));
-    view->defaultFrameGraph()->setClearColor(QColor(QRgb(0xffffff)));
+    view->defaultFrameGraph()->setClearColor(QColor(QRgb(0xf0f0f0)));
+//    view->defaultFrameGraph()->setClearColor(QColor(QRgb(0xffffff)));
     container = QWidget::createWindowContainer(view);
     QSize screenSize = view->screen()->size();
     container->setMinimumSize(QSize(200, 100));
